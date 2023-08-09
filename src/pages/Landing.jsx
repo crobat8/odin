@@ -58,7 +58,7 @@ const Landing = () =>{
 
   return (
     <div className="landing">
-      
+{/*       
       <header className="topBar" >
         <img src={logo} alt='logo' /> 
         <p>
@@ -91,7 +91,7 @@ const Landing = () =>{
       
       
       <footer className='botBar'>
-      </footer>
+      </footer> */}
     </div>
   )
 }
