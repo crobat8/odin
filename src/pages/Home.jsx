@@ -64,6 +64,7 @@ const Home = () =>{
                     <button onClick={()=>setPage(1)}>
                         questions
                     </button>
+                    {/* change this to guest account for this website */}
                     {currentUser.uid == "BqJmqRQc2gQnSoHZVwoH8Q99uya2"
                     ?
                     <button onClick={()=>disableButtonHandler("Create is diabled on guest account ")}>
@@ -74,7 +75,7 @@ const Home = () =>{
                         create
                     </button>
                     }
-                    
+                    {/* change this to guest account for this website */}
                     {currentUser.uid == "BqJmqRQc2gQnSoHZVwoH8Q99uya2"
                     ?
                     <button onClick={()=>disableButtonHandler("Friends are diabled on guest account ")}>

@@ -1,8 +1,7 @@
 $usedBlue1:#478FFB;
 $usedRed1:#ED2326;
 $usedGrey1:#2B2B2B;
-
-
+$usedGrey2:#3B3B3B;
 
 *{
   margin: 0;
@@ -38,7 +37,6 @@ $usedGrey1:#2B2B2B;
         display: flex;
         .fade{
           margin: auto;
-            
           .formWrapper{
             padding: 10px;
             height: fit-content;                
@@ -234,7 +232,7 @@ $usedGrey1:#2B2B2B;
     }
     main{
       background-color: #000;
-      min-height: 700px;
+      min-height: 800px;
       .create{
         display: grid;
         grid-template-columns: 1fr 3fr;
@@ -254,7 +252,7 @@ $usedGrey1:#2B2B2B;
             color: $usedBlue1;
             height: 100px;
             width: 80%;
-            transition: 0.5s;
+            transition: 0.3s;
           }
           button:hover{
             background-color: #000;
@@ -268,7 +266,89 @@ $usedGrey1:#2B2B2B;
           padding: 10px;
           margin: 20px;
           border-radius: 20px;
-          height: 600px;
+          min-height: 700px;
+          .formWrapper{
+            padding: 10px;
+            height: fit-content;   
+            form{
+              display: flex;
+              flex-direction: column;
+              align-items: flex-start;
+              gap: 18px;
+              align-self: stretch;
+              .fullIn{
+                border-radius: 8px;
+                border: 1px solid #8D9298;
+                display: flex;
+                align-items: center;
+                align-self: stretch;
+                .Subleft{
+                  display: flex;
+                  padding: 10px;
+                }
+                .Subright{
+                  display: flex;
+                  flex-direction: column;
+                  align-items: flex-start;
+                  gap: 4px;
+                  flex: 1 0 0;
+                  label{
+                    margin-top: 10px;
+                    margin-left: 10px;
+                  }
+                  input{
+                    color: #101010;
+                    font-size: 20px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 18px; /* 128.571% */
+                    border:none;
+                    padding: 10px;
+                    margin: 10px;
+                    width: 90%;
+                  }
+                  ::placeholder {
+                    opacity: .6; /* Firefox */
+                  }
+                }
+              }
+              .choices{
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+                width: 100%;
+                button{
+                  display: flex;
+                  width: 100%;
+                  padding: 14px 0px;
+                  justify-content: center;
+                  align-items: center;
+                  border-radius: 4px;
+                  background: $usedGrey1;
+                  color: $usedBlue1;
+                  border: solid 2px $usedBlue1;
+                  margin-bottom: 10px;
+                  cursor:pointer;
+                }
+                button:hover{
+                  background: $usedGrey2;
+                }
+              }
+              .logButton{
+                display: flex;
+                width: 100%;
+                padding: 14px 0px;
+                justify-content: center;
+                align-items: center;
+                border-radius: 4px;
+                background: #197AFF;
+                color: white;
+                border: none;
+                margin-bottom: 10px;
+                cursor:pointer;
+              }
+            }
+          }
         }
       }
     }
