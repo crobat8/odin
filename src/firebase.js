@@ -13,6 +13,7 @@ import { getStorage} from "firebase/storage";
 const firebaseConfig = {
   apiKey: "AIzaSyAvU0G-mMc1ZQQRljXdBzmwOP324JqwmKM",
   authDomain: "courseprep-e32dc.firebaseapp.com",
+  databaseURL: "https://courseprep-e32dc-default-rtdb.firebaseio.com",
   projectId: "courseprep-e32dc",
   storageBucket: "courseprep-e32dc.appspot.com",
   messagingSenderId: "447894790803",

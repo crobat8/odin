@@ -5,7 +5,8 @@ import Register from "../componets/Register";
 import ReactCardFlip from "react-card-flip";
 import ResetPassword from '../componets/ResetPassword';
 import background from '../img/home_banner_edit.png'
-import logo from '../img/partyuplogo.png'
+import Whitelogo from '../img/WhiteBackLogo.png'
+import Clearlogo from '../img/ClearBackLogo.png'
 import Pill from '../componets/Pill';
 import FadeIn from 'react-fade-in';
 
@@ -13,19 +14,24 @@ const Landing = () =>{
   const [slide,setSlide] = useState(1)
   const pillInfo = [
     {
-      title:"Party",
-      description:"Find local events, get-togethers, or parties near you.",
-      pic:logo
+      title:"Practice",
+      description:"Answer questions to practice prior to a test",
+      pic:Whitelogo
     },
     {
       title:"Create",
-      description:"Make your own events and meet new people",
-      pic:logo
+      description:"Make questions that others can learn from in the.",
+      pic:Whitelogo
     },
     {
-      title:"Friends",
-      description:"Met somebody at and evenet you want to keep in touch with? Add them as a friend.",
-      pic:logo
+      title:"Test",
+      description:"Test yourself with a practice test to see where you are prior to an exam.",
+      pic:Whitelogo
+    },
+    {
+      title:"School",
+      description:"Choose what school you attend to allow for questions specific to your class",
+      pic:Whitelogo
     }
   ]
   function HandleSwap(){
@@ -58,24 +64,24 @@ const Landing = () =>{
 
   return (
     <div className="landing">
-{/*       
+      
       <header className="topBar" >
-        <img src={logo} alt='logo' /> 
+        <img src={Clearlogo} alt='logo' /> 
         <p>
-          PartyUp
+          Course Prep
         </p>
       </header>
       <main >
         <FadeIn delay={100}>
           <div className='focus'> 
-            <div className='imageContainer'> 
+            {/* <div className='imageContainer'> 
               <img className='home_banner1' src={background} alt='logo'/>
-            </div>
+            </div> */}
             
             <HandleSwap/>
             
           </div>
-          <img className='home_banner2' src={background} alt='logo'/>
+          {/* <img className='home_banner2' src={background} alt='logo'/> */}
           <div className='pills'>
             
               {pillInfo.map((e,i)=>{
@@ -91,7 +97,7 @@ const Landing = () =>{
       
       
       <footer className='botBar'>
-      </footer> */}
+      </footer>
     </div>
   )
 }
