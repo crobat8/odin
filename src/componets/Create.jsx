@@ -41,19 +41,9 @@ import {
 import { 
   AuthContext
 } from "../context/AuthContext";
-
-import Geocode from "react-geocode";
-//default location aka paris
-var center = {lat: 48.8584, lng: 2.2945}
-
-if ("geolocation" in navigator) {
-  navigator.geolocation.getCurrentPosition(function(position) {
-    center.lat=position.coords.latitude;
-    center.lng=position.coords.longitude
-  });
-} else {
-  console.log("Not Available");
-}
+import MultipleChoice from './MultipleChoice';
+import FillInBlank from './FillInBlank';
+import LongAnswer from './LongAnswer';
 
 const Create = () =>{ 
   const{currentUser} = useContext(AuthContext);
@@ -94,17 +84,17 @@ const Create = () =>{
   // }
   function HandleForm(){
     if(form === 1){
-      return <h1>
-        multiple choice
-      </h1>;
+      return (
+        <MultipleChoice/>
+      )
     }else if(form === 2){
-      return <h1>
-        fill in the blank
-      </h1>;
+      return (
+        <FillInBlank/>
+      )
     }else if(form === 3){
-      return <h1>
-        long answer
-      </h1>;
+      return (
+        <LongAnswer/>
+      )
     }else{
       return (
         <div style={{"min-height": "1000px","textAlign":"center"}}>
