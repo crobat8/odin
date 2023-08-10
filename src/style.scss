@@ -2,6 +2,8 @@ $usedBlue1:#478FFB;
 $usedRed1:#ED2326;
 $usedGrey1:#2B2B2B;
 
+
+
 *{
   margin: 0;
   padding: 0;
@@ -207,6 +209,7 @@ $usedGrey1:#2B2B2B;
             background-color: $usedGrey1;
             color: $usedBlue1;
             border-color: $usedBlue1;
+            transition: 0.5s;
         }
         button:hover{
             background-color: black;
@@ -222,7 +225,7 @@ $usedGrey1:#2B2B2B;
           border: solid $usedRed1 2px;
           border-radius: 5px;
           padding: 10px;
-
+          transition: 0.5s;
         }
         .logout:hover{
           background-color: black;
@@ -230,7 +233,41 @@ $usedGrey1:#2B2B2B;
       }  
     }
     main{
+      background-color: #000;
       min-height: 700px;
+      .create{
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        .left{
+          background-color: $usedGrey1;
+          padding: 10px;
+          margin: 20px;
+          border-radius: 20px;
+          button{
+            margin-left: 10%;
+            margin-right: 10%;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: $usedBlue1 solid 2px;
+            border-radius: 20px;
+            background-color: $usedGrey1;
+            color: $usedBlue1;
+            height: 100px;
+            width: 80%;
+            transition: 0.5s;
+          }
+          button:hover{
+            background-color: #000;
+          }
+        }
+        .right{
+          background-color: $usedGrey1;
+          padding: 10px;
+          margin: 20px;
+          border-radius: 20px;
+          height: 600px;
+        }
+      }
     }
     .information{
       background-color: $usedGrey1;

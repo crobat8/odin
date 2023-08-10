@@ -58,41 +58,66 @@ if ("geolocation" in navigator) {
 const Create = () =>{ 
   const{currentUser} = useContext(AuthContext);
   const[loading2,setLoading2] = useState(true)
-
-  const handleSubmit = async (e) => {
+  const[form,setForm]= useState(1)
+  // const handleSubmit = async (e) => {
     
-    const EventType = e.target[1].value;
-    const Title = e.target[2].value;
-    const Description = e.target[3].value;
-    const Wanted = e.target[4].value;
-    const id = currentUser.uid;
-    const EventPhoto = currentUser.photoURL
-    const Host = currentUser.displayName
-    try{
-      setDoc(doc(db, "Event", currentUser.uid), {
-        comingList:{
-          [currentUser.uid]:currentUser.uid
-        },
-        id,
-        EventType,
-        Title,
-        Description,
-        Wanted,
-        Lattitude:center.lat,
-        Longitude:center.lng,
-        EventPhoto,
-        Host
+  //   const EventType = e.target[1].value;
+  //   const Title = e.target[2].value;
+  //   const Description = e.target[3].value;
+  //   const Wanted = e.target[4].value;
+  //   const id = currentUser.uid;
+  //   const EventPhoto = currentUser.photoURL
+  //   const Host = currentUser.displayName
+  //   try{
+  //     setDoc(doc(db, "Event", currentUser.uid), {
+  //       comingList:{
+  //         [currentUser.uid]:currentUser.uid
+  //       },
+  //       id,
+  //       EventType,
+  //       Title,
+  //       Description,
+  //       Wanted,
+  //       Lattitude:center.lat,
+  //       Longitude:center.lng,
+  //       EventPhoto,
+  //       Host
         
-      });
-      e.preventDefault();
-      alert("event was succesfully created")
+  //     });
+  //     e.preventDefault();
+  //     alert("event was succesfully created")
       
-    }catch(err){
-      console.log(err)
+  //   }catch(err){
+  //     console.log(err)
+  //   }
+
+  // }
+  function HandleForm(){
+    if(form === 1){
+      return <h1>
+        multiple choice
+      </h1>;
+    }else if(form === 2){
+      return <h1>
+        fill in the blank
+      </h1>;
+    }else if(form === 3){
+      return <h1>
+        long answer
+      </h1>;
+    }else{
+      return (
+        <div style={{"min-height": "1000px","textAlign":"center"}}>
+          <h1 style={{"backgroundColor":"#00b2be",
+                      "textAlign":"center",
+                      "padding":"20px",
+                      "borderRadius":"20px"}}>
+            select a page to go to
+          </h1>
+        </div>
+      )
     }
-
   }
-
   
   if (loading2) {
     setLoading2(false)
@@ -103,8 +128,21 @@ const Create = () =>{
   }
   return (
     <div className='create'>
-      
-      <form className="Form" onSubmit={handleSubmit}>
+      <div className='left'>
+        <button onClick={()=>setForm(1)}>
+          multiple Choice
+        </button>
+        <button onClick={()=>setForm(2)}>
+          fill in the blank
+        </button>
+        <button onClick={()=>setForm(3)}>
+          long answer
+        </button>
+      </div>
+      <div className='right'>
+        <HandleForm/>
+      </div>
+      {/* <form className="Form" onSubmit={handleSubmit}>
         <label for="goingTo"  >Where is the party:</label>
         <label for="Event" >
           Event Type:
@@ -126,7 +164,7 @@ const Create = () =>{
         </label>
         <input className='attendingWanted' id='attendingWanted' type='number' min={1}></input>
         <button>Log</button>
-      </form>
+      </form> */}
     </div>
   )
 }
