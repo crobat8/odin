@@ -56,38 +56,8 @@ if ("geolocation" in navigator) {
 }
 
 const Create = () =>{ 
-  const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: 'AIzaSyBvBeQOPrT0k1EFYDd7niC-aBbTEUj7uK0',
-      libraries: ['places']
-  })
-  const [screen,setScreen] =useState(window.innerWidth/4)
-  const [map, setMap] = useState(/** @type google.maps.Map */ (null))
-  const [partyLocation,setPartyLocation] = useState(center);
   const{currentUser} = useContext(AuthContext);
-  const[deleteChats,setDeleteChats] = useState([]);
   const[loading2,setLoading2] = useState(true)
-  Geocode.setApiKey("AIzaSyBvBeQOPrT0k1EFYDd7niC-aBbTEUj7uK0");
-
-  /** @type React.MutableRefObject<HTMLInputElement> */
-  const originRef = useRef()
-  /** @type React.MutableRefObject<HTMLInputElement> */
-  const destiantionRef = useRef()
-
-  function handleLocation(){
-    console.log(destiantionRef.current.value);
-    Geocode.fromAddress(destiantionRef.current.value).then(
-      (response) => {
-        const { lat, lng } = response.results[0].geometry.location;
-        center.lat = lat;
-        center.lng = lng;
-        setPartyLocation(center)
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }
-
 
   const handleSubmit = async (e) => {
     
@@ -95,8 +65,6 @@ const Create = () =>{
     const Title = e.target[2].value;
     const Description = e.target[3].value;
     const Wanted = e.target[4].value;
-    const Location = partyLocation;
-    const Address = destiantionRef.current.value
     const id = currentUser.uid;
     const EventPhoto = currentUser.photoURL
     const Host = currentUser.displayName
@@ -112,23 +80,11 @@ const Create = () =>{
         Wanted,
         Lattitude:center.lat,
         Longitude:center.lng,
-        Location,
-        Address,
         EventPhoto,
         Host
         
       });
       e.preventDefault();
-
-      deleteChats.map((e)=>{
-
-        var num = e.date
-        var str = num.toString()
-        var sentAdded = str+e.sentBy
-        deleteDoc(doc(db,"Chats",sentAdded))
-      });
-
-      
       alert("event was succesfully created")
       
     }catch(err){
@@ -137,69 +93,19 @@ const Create = () =>{
 
   }
 
-  function getChats(){
-    const meRef = query(collection(db,"Chats")
-                  ,where("id","==",currentUser.uid))
-    onSnapshot(meRef,(snapshot)=>{
-      setDeleteChats(snapshot.docs.map(doc=>doc.data()))
-      setLoading2(false)
-    })
-  }
-
   
-  if (!isLoaded||loading2) {
+  if (loading2) {
+    setLoading2(false)
 
-    getChats();
     return <h1>
         map is loading
     </h1>
   }
   return (
     <div className='create'>
-      <Flex
-        flexDirection='column'
-        alignItems='center'
-        h='700px'
-        w='100vw'
-      >
-        <Box mt={20} left={screen} top={100} h='600px' w='80%'>
-        
-          <GoogleMap
-            center={partyLocation}
-            zoom={10}
-            mapContainerStyle={{ width: '100%', height: '100%' }}
-            options={{
-              zoomControl: false,
-              streetViewControl: false,
-              mapTypeControl: false,
-              fullscreenControl: false,
-            }}
-            onLoad={map => setMap(map)}
-          >
-            <MarkerF 
-              icon={
-                StyleSheet
-              }
-              position={partyLocation}    
-            >
-                    
-            </MarkerF>  
-          </GoogleMap>
-        </Box>
-      </Flex>
+      
       <form className="Form" onSubmit={handleSubmit}>
         <label for="goingTo"  >Where is the party:</label>
-        <Autocomplete onPlaceChanged={handleLocation}>
-          <Input
-            id="goingTo"
-            className='goingTo'
-            type='text'
-            placeholder='where is the hangout at'
-            ref={destiantionRef}
-            width='250px'
-            required
-          />
-        </Autocomplete>
         <label for="Event" >
           Event Type:
           <select required id='EventType' name="EventType">

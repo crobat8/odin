@@ -23,7 +23,7 @@ const Home = () =>{
     const [page,setPage] = useState(0);
     const{currentUser} = useContext(AuthContext);
 
-    let iconStyles = { color: "#e2f1ff", fontSize: "1.5em" ,padding:"5px"};
+    let iconStyles = { color: "#478FFB", fontSize: "1.5em" ,padding:"5px"};
     
     function HandleSwap(){
       if(page === 1){
@@ -32,7 +32,7 @@ const Home = () =>{
         </h1>;
       }else if(page === 2){
         return <h1>
-          create page
+          <Create/>
         </h1>;
       }else if(page === 3){
         return <h1>
@@ -95,10 +95,10 @@ const Home = () =>{
                 
                 
             
-             <main className="page" >
+            <main className="page" >
                 <HandleSwap/>
             </main>
-            {/*<footer className="information" >
+            <footer className="information" >
                 <div className='infoTop'>
                     <div className='left'>
                         <h3>
@@ -131,13 +131,14 @@ const Home = () =>{
                             send us a review
                         </button>
                     </div>
+                    <div className='infoBot' >
+                        <span className='copy'>
+                            &copy; PartyUp
+                        </span>                 
+                    </div>
                 </div>
-                <div className='infoBot' >
-                    <span className='copy'>
-                        &copy; PartyUp
-                    </span>                 
-                </div>
-            </footer> */}
+                
+            </footer> 
         </div>
     )
 }

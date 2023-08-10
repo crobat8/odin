@@ -204,12 +204,12 @@ $usedGrey1:#2B2B2B;
             height: 50px;
             width: 100px;
             border-radius: 20px;
-            background-color: black;
+            background-color: $usedGrey1;
             color: $usedBlue1;
             border-color: $usedBlue1;
         }
         button:hover{
-            background-color: $usedRed1;
+            background-color: black;
             
         }
     }
@@ -225,9 +225,63 @@ $usedGrey1:#2B2B2B;
 
         }
         .logout:hover{
-          background-color: $usedBlue1;
+          background-color: black;
         }
       }  
+    }
+    main{
+      min-height: 700px;
+    }
+    .information{
+      background-color: $usedGrey1;
+      min-height: 100px;
+      color: $usedBlue1;
+      .infoTop{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 10px;
+        min-height: 100px;
+        .left{
+          text-align: center;
+          h3{
+            text-align: center;
+            text-decoration: underline;
+            margin: 10px;
+          }
+        }
+        .middle{
+          text-align: center;
+          h3{ 
+            text-align: center;
+            text-decoration: underline;
+            margin: 10px;
+          }
+        }
+        .right{
+          text-align: center;
+          h3{
+            text-align: center;
+            text-decoration: underline;
+            margin: 10px;
+          }
+          button{
+            padding: 10px;
+            color: $usedBlue1;
+            padding: 0;
+            border: none;
+            background: none;
+          }
+          button:hover{
+            color: black;
+            background-color: white;
+            border-radius: 5px;
+          }
+        }
+      }
+      .infoBot{
+        text-align: center;
+          
+      }
     }
   }
 }
