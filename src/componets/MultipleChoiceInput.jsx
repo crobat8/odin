@@ -21,8 +21,6 @@ import {
 import {  
   db  
 } from "../firebase";
-
-
 const MultipleChoiceInput=(props)=>{
   let question = { color: "white", height:"20px",width:"20px"};
   let correct = { color: "green", height:"20px",width:"20px"};
@@ -68,9 +66,6 @@ const MultipleChoiceInput=(props)=>{
     for(var x = 1;x<=wrongs;x++){
       options.push(e.target[1+x].value)
     }
-    console.log("question",question)
-    console.log("answer",answer)
-    console.log("options",options)
     e.preventDefault();
     const date = new Date().getTime();
     try{
@@ -89,16 +84,15 @@ const MultipleChoiceInput=(props)=>{
     }catch(err){
       console.log(err)
     }
-
   }
   
   return(
     <div className="formWrapper">
       <h3>
-        MultipleChoiceInput
+        Multiple choice
       </h3>
       <form onSubmit={handleSubmit}>
-        
+      <FadeIn className="fade">
         <div className="fullIn">
           <div className="Subleft">
             <AiFillQuestionCircle style={question}/>
@@ -128,7 +122,7 @@ const MultipleChoiceInput=(props)=>{
           </button>
         </div>
         <button className="logButton">submit question</button>
-        
+        </FadeIn>
       </form>
     </div>
     
