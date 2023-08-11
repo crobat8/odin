@@ -51,7 +51,7 @@ const MultipleChoiceInput=(props)=>{
         </div>
         <div className="Subright">
           <label for='wrong'>Wrong Option</label>
-          <input type="text" placeholder={x+3} />
+          <input required type="text" placeholder={x+3} />
         </div>
       </div>
       )
@@ -62,6 +62,7 @@ const MultipleChoiceInput=(props)=>{
     console.log(e);
     const question = e.target[0].value;
     const answer = e.target[1].value;
+    const type = "multipleChoice"
     var options = [] ;
     options.push(e.target[1].value)
     for(var x = 1;x<=wrongs;x++){
@@ -71,9 +72,12 @@ const MultipleChoiceInput=(props)=>{
     console.log("answer",answer)
     console.log("options",options)
     e.preventDefault();
+    const date = new Date().getTime();
     try{
-      setDoc(doc(db, "Event", props.uid), {
+      setDoc(doc(db, "Questions", props.uid+"-"+date), {
         createdBy:props.uid,
+        date,
+        type,
         question,
         answer,
         options
@@ -101,7 +105,7 @@ const MultipleChoiceInput=(props)=>{
           </div>
           <div className="Subright">
             <label for='question'>Question</label>
-            <input type="text" placeholder="what is 1+1" />
+            <input required type="text" placeholder="what is 1+1" />
           </div>
         </div>
 
@@ -111,7 +115,7 @@ const MultipleChoiceInput=(props)=>{
           </div>
           <div className="Subright">
             <label for='correct'>Correct Answer</label>
-            <input type="text" placeholder="2" />
+            <input required type="text" placeholder="2" />
           </div>
         </div>
         <WrongAnswers/>
