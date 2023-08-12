@@ -8,6 +8,10 @@ import {
 } from 'react-icons/ai';
 
 import { 
+  GiTeacher
+} from 'react-icons/gi';
+
+import { 
   doc, 
   setDoc,
   getDoc,
@@ -22,9 +26,9 @@ import {
   db  
 } from "../firebase";
 const MultipleChoiceInput=(props)=>{
-  let question = { color: "white", height:"20px",width:"20px"};
-  let correct = { color: "green", height:"20px",width:"20px"};
-  let wrong = { color: "red", height:"20px",width:"20px"};
+  let question = { color: "white", height:"30px",width:"30px"};
+  let correct = { color: "green", height:"30px",width:"30px"};
+  let wrong = { color: "red", height:"30px",width:"30px"};
   const [wrongs,setWrongs] = useState(3);
 
   const handleChangeWrong = (x) =>{
@@ -36,7 +40,7 @@ const MultipleChoiceInput=(props)=>{
       setWrongs(wrongs+x);
     }
   }
-  console.log(props.classes)
+
 
   const WrongAnswers = ()=>{
     const ret = []
@@ -55,22 +59,35 @@ const MultipleChoiceInput=(props)=>{
     }
     return ret
   }
-  
+  const Classes = (x)=>{
+    return(
+      <option value={x}>
+        {x}
+      </option>
+    )
+  }
+
   const handleSubmit = async (e) => {
-    console.log(e);
-    const question = e.target[0].value;
-    const answer = e.target[1].value;
+    e.preventDefault();
+    const choseClass = e.target[0].value;
+    if(choseClass == "0"){
+      alert("you must choose a class for the question")
+      return
+    }
+    const question = e.target[1].value;
+    const answer = e.target[2].value;
     const type = "multipleChoice"
     var options = [] ;
-    options.push(e.target[1].value)
+    options.push(e.target[2].value)
     for(var x = 1;x<=wrongs;x++){
-      options.push(e.target[1+x].value)
+      options.push(e.target[2+x].value)
     }
     e.preventDefault();
     const date = new Date().getTime();
     try{
       setDoc(doc(db, "questions", props.uid+"-"+date), {
         createdBy:props.uid,
+        choseClass,
         date,
         type,
         question,
@@ -79,7 +96,7 @@ const MultipleChoiceInput=(props)=>{
       });
       
       
-      alert("event was succesfully created")
+      alert("question was succesfully created")
       
     }catch(err){
       console.log(err)
@@ -93,36 +110,56 @@ const MultipleChoiceInput=(props)=>{
         Multiple choice
       </h3>
       <form onSubmit={handleSubmit}>
-      <FadeIn className="fade">
-        <div className="fullIn">
-          <div className="Subleft">
-            <AiFillQuestionCircle style={question}/>
-          </div>
-          <div className="Subright">
-            <label for='question'>Question</label>
-            <input required type="text" placeholder="what is 1+1" />
-          </div>
-        </div>
+        <FadeIn className="fade">
+          <div className="fullIn">
+            <div className="Subleft">
+              <GiTeacher style={question}/>
+            </div>
+            <div className="Subright">
+              <label for='class'>What class is this for</label>
+                <select>
+                  <option value="0">
+                    Select Class
+                  </option>
+                  {props.classes.map((e)=>{
 
-        <div className="fullIn">
-          <div className="Subleft">
-            <AiFillCheckCircle style={correct}/>
+                    return(
+                      Classes(e)
+                    )
+                  })}
+                </select>
+            </div>
           </div>
-          <div className="Subright">
-            <label for='correct'>Correct Answer</label>
-            <input required type="text" placeholder="2" />
+          
+          <div className="fullIn">
+            <div className="Subleft">
+              <AiFillQuestionCircle style={question}/>
+            </div>
+            <div className="Subright">
+              <label for='question'>Question</label>
+              <input required type="text" placeholder="what is 1+1" />
+            </div>
           </div>
-        </div>
-        <WrongAnswers/>
-        <div className="choices">
-          <button type="button" onClick={()=>handleChangeWrong(-1)}>
-            remove
-          </button>
-          <button type="button" onClick={()=>handleChangeWrong(1)}>
-            add
-          </button>
-        </div>
-        <button className="logButton">submit question</button>
+
+          <div className="fullIn">
+            <div className="Subleft">
+              <AiFillCheckCircle style={correct}/>
+            </div>
+            <div className="Subright">
+              <label for='correct'>Correct Answer</label>
+              <input required type="text" placeholder="2" />
+            </div>
+          </div>
+          <WrongAnswers/>
+          <div className="choices">
+            <button type="button" onClick={()=>handleChangeWrong(-1)}>
+              remove option
+            </button>
+            <button type="button" onClick={()=>handleChangeWrong(1)}>
+              add option
+            </button>
+          </div>
+          <button className="logButton">submit question</button>
         </FadeIn>
       </form>
     </div>
