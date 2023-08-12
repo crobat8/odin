@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FadeIn from 'react-fade-in';
 
 import { 
@@ -35,9 +35,8 @@ const MultipleChoiceInput=(props)=>{
     }else{
       setWrongs(wrongs+x);
     }
-    
   }
-
+  console.log(props.classes)
 
   const WrongAnswers = ()=>{
     const ret = []
@@ -56,6 +55,7 @@ const MultipleChoiceInput=(props)=>{
     }
     return ret
   }
+  
   const handleSubmit = async (e) => {
     console.log(e);
     const question = e.target[0].value;
@@ -69,7 +69,7 @@ const MultipleChoiceInput=(props)=>{
     e.preventDefault();
     const date = new Date().getTime();
     try{
-      setDoc(doc(db, "Questions", props.uid+"-"+date), {
+      setDoc(doc(db, "questions", props.uid+"-"+date), {
         createdBy:props.uid,
         date,
         type,
@@ -85,7 +85,8 @@ const MultipleChoiceInput=(props)=>{
       console.log(err)
     }
   }
-  
+
+
   return(
     <div className="formWrapper">
       <h3>

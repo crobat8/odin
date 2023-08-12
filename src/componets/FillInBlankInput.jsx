@@ -48,7 +48,7 @@ const FillInBlankInput=(props)=>{
     e.preventDefault();
     const date = new Date().getTime();
     try{
-      setDoc(doc(db, "Questions", props.uid+"-"+date), {
+      setDoc(doc(db, "questions", props.uid+"-"+date), {
         createdBy:props.uid,
         date,
         type,

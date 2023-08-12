@@ -225,7 +225,7 @@ $usedGrey2:#3B3B3B;
       }  
     }
     main{
-      background-color: #000;
+      background-color: $usedBlue1;
       min-height: 800px;
       .create{
         display: grid;
