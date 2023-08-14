@@ -106,9 +106,9 @@ const MultipleChoiceInput=(props)=>{
 
   return(
     <div className="formWrapper">
-      <h3>
+      <h1>
         Multiple choice
-      </h3>
+      </h1>
       <form onSubmit={handleSubmit}>
         <FadeIn className="fade">
           <div className="fullIn">

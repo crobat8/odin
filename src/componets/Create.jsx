@@ -151,13 +151,13 @@ const Create = () =>{
     <div className='create'>
       <div className='left'>
         <button onClick={()=>setForm(1)}>
-          multiple Choice
+          Multiple choice
         </button>
         <button onClick={()=>setForm(2)}>
-          fill in the blank
+          Fill in the blank
         </button>
         <button onClick={()=>setForm(3)}>
-          long answer
+          Long answer
         </button>
       </div>
       <div className='right'>

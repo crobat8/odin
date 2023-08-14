@@ -75,9 +75,9 @@ const FillInBlankInput=(props)=>{
   
   return(
     <div className="formWrapper">
-      <h3>
+      <h1>
         Fill in the blank
-      </h3>
+      </h1>
       <form onSubmit={handleSubmit}>
         <FadeIn className="fade">
 

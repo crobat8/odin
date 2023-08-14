@@ -17,23 +17,26 @@ import {
     AiFillInstagram 
 } from 'react-icons/ai';
 import Review from '../componets/Review';
+import Questions from '../componets/Questions';
 
 const Home = () =>{ 
     
-    const [page,setPage] = useState(0);
+    const [page,setPage] = useState(1);
     const{currentUser} = useContext(AuthContext);
 
     let iconStyles = { color: "#478FFB", fontSize: "1.5em" ,padding:"5px"};
     
     function HandleSwap(){
       if(page === 1){
-        return <h1>
-          question page
-        </h1>;
+        return (
+            <Questions/>
+        )
       }else if(page === 2){
-        return <h1>
-          <Create/>
-        </h1>;
+        return (
+            <Create/>
+        
+        )
+
       }else if(page === 3){
         return <h1>
           practice quiz

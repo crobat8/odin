@@ -256,6 +256,8 @@ $usedGrey2:#3B3B3B;
           }
         }
         .right{
+                  display: grid;
+        grid-template-columns: 1fr 3fr;
           background-color: $usedGrey1;
           padding: 10px;
           margin: 20px;
@@ -359,6 +361,35 @@ $usedGrey2:#3B3B3B;
                 }
               }
             }
+          }
+        }
+      }
+      .questions{
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        .left{
+          background-color: $usedGrey1;
+          padding: 10px;
+          margin: 20px;
+          border-radius: 20px;
+          button{
+            margin-left: 10%;
+            margin-right: 10%;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: $usedBlue1 solid 2px;
+            border-radius: 20px;
+            background-color: $usedGrey1;
+            color: $usedBlue1;
+            height: 100px;
+            width: 80%;
+            transition: 0.3s;
+          }
+          button:hover{
+            background-color: #000;
+            margin-left: 5%;
+            margin-right: 5%;
+            width: 90%;
           }
         }
       }
