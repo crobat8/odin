@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ClassList from "./ClassList";
 import FadeIn from "react-fade-in/lib/FadeIn";
+import { color } from "framer-motion";
 
 const DepartmentList = (props) =>{
 
@@ -27,10 +28,16 @@ const DepartmentList = (props) =>{
     <FadeIn>
       {props.keys.map((e,i)=>{
         return(
-          <div className="nameHolder">
-            <h3 onClick={(event)=>handleSubject(event,e)} className="nameOfDept">
-              {e}
-            </h3>
+          <div className="fullDept">
+            <div onClick={(event)=>handleSubject(event,e)} className="nameDept">
+              {subject==(e)?
+              <h3 className="selectedDepartment">
+                {e}
+              </h3>
+              :<h4 className="notSelectedDepartment">
+                {e}
+              </h4>}
+            </div>
             {subject==(e)?
             <ClassList changeClass={props.changeClass} department={e} classNums={props.classes[e]}/>:
             <div>

@@ -15,9 +15,9 @@ const ClassList = (props) =>{
     <FadeIn>
       {props.classNums.map((e,i)=>{
         return(
-          <li onClick={(event) =>change(event,e)} className="classNum">
+          <h4 onClick={(event) =>change(event,e)} className="classNum">
             {e}
-          </li>
+          </h4>
         )
       })}
     </FadeIn>
