@@ -55,16 +55,17 @@ const Questions =() =>{
   }
 
   const getStudies = async()=>{
-  setStudies([])
-      const q = query(collection(db,"questions")
-                      ,where("choseClass","==",choseClass))
-      const querySnapshot = await getDocs(q)
+    setLoadingQuestions(true)
+    setStudies([])
+    const q = query(collection(db,"questions")
+                    ,where("choseClass","==",choseClass))
+    const querySnapshot = await getDocs(q)
 
-      querySnapshot.docs.map((doc)=>{
-        var data = doc.data()
-        setStudies(arr=>[...arr,data])
-      });
-      
+    querySnapshot.docs.map((doc)=>{
+      var data = doc.data()
+      setStudies(arr=>[...arr,data])
+    });
+    setLoadingQuestions(false)
   }
   
   function HandleQType(x){
@@ -78,13 +79,13 @@ const Questions =() =>{
     }else if(data.type == "longAnswer"){
       return(
         <p>
-          long Answer{data.answer}
+          long Answer {data.answer}
         </p>
       )
     }else if(data.type == "fillInBlank"){
       return(
         <p>
-          fill in the blank{data.answer}
+          fill in the blank {data.answer}
         </p>
       )
     }
@@ -134,11 +135,21 @@ const Questions =() =>{
         <h1>
           {choseClass}
         </h1>
-        {studies.map((e)=>{
-          return(
-            <HandleQType data={e}/>
-          )
-        })}
+        {loadingQuestions?
+        <h3>
+          getting questions
+        </h3>
+        :
+        <div>
+          {studies.map((e)=>{
+            return(
+              <HandleQType data={e}/>
+            )
+          })}
+        </div>
+        
+        }
+        
 
 
       </div>
