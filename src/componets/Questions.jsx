@@ -133,22 +133,18 @@ const Questions =() =>{
           {choseClass}
         </h1>
         {loadingQuestions?
-        <h3>
-          getting questions
-        </h3>
+          <h3>
+            getting questions
+          </h3>
         :
-        <div>
-          {studies.map((e)=>{
-            return(
-              <HandleQType data={e}/>
-            )
-          })}
-        </div>
-        
+          <div className="questionList">
+            {studies.map((e)=>{
+              return(
+                <HandleQType data={e}/>
+              )
+            })}
+          </div>
         }
-        
-
-
       </div>
     </div>
   )
