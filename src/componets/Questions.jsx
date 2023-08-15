@@ -22,12 +22,14 @@ import DepartmentList from "./DepartmentList";
 const Questions =() =>{
   const[loading,setLoading]=useState(true)
   const[loading2,setLoading2]=useState(true)
+  const[loadingQuestions,setLoadingQuestions]=useState(false)
   const[classes,setClasses]=useState([])
   const[brokenDown,setBrokenDown]=useState()
-  const[choseClass,setChoseClass]=useState("MATH101")
+  const[choseClass,setChoseClass]=useState("Pick a class to get questions for")
   const[keys,setKeys] =useState()
+  const[studies,setStudies]=useState(0)
+  
   const getClasses = async()=>{
-
     await getDocs(collection(db,"classes"),
                   where("Document ID","==","Western_Washington_University"))
                   .then((querySnapshot)=>{
@@ -39,7 +41,6 @@ const Questions =() =>{
   }
 
   function breakDown(){
-
     const keys = Object.keys(classes)
     setKeys(keys)
     var ret = []
@@ -53,6 +54,43 @@ const Questions =() =>{
     setLoading2(false)
   }
 
+  const getStudies = async()=>{
+  setStudies([])
+      const q = query(collection(db,"questions")
+                      ,where("choseClass","==",choseClass))
+      const querySnapshot = await getDocs(q)
+
+      querySnapshot.docs.map((doc)=>{
+        var data = doc.data()
+        setStudies(arr=>[...arr,data])
+      });
+      
+  }
+  
+  function HandleQType(x){
+    var data = x.data
+    if(data.type == "multipleChoice"){
+      return(
+        <p>
+          multiple choice {data.answer}
+        </p>
+      )
+    }else if(data.type == "longAnswer"){
+      return(
+        <p>
+          long Answer{data.answer}
+        </p>
+      )
+    }else if(data.type == "fillInBlank"){
+      return(
+        <p>
+          fill in the blank{data.answer}
+        </p>
+      )
+    }
+
+  }
+
   useEffect(()=>{
     getClasses();
   },[]);
@@ -60,6 +98,10 @@ const Questions =() =>{
   useEffect(()=>{
     breakDown();
   },[classes])
+
+  useEffect(()=>{
+    getStudies();
+  },[choseClass])
 
   if(loading){
     return(
@@ -90,9 +132,15 @@ const Questions =() =>{
       </div>
       <div className='right'>
         <h1>
-          test
           {choseClass}
         </h1>
+        {studies.map((e)=>{
+          return(
+            <HandleQType data={e}/>
+          )
+        })}
+
+
       </div>
     </div>
   )

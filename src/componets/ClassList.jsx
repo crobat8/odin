@@ -1,23 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import FadeIn from "react-fade-in/lib/FadeIn";
 
 const ClassList = (props) =>{
-
-  function change(e,x){
-    props.changeClass(props.department+x)
+  const[selected,setSelected]=useState("")
+  function change(e,num){
+    props.changeClass(props.department+num)
+    setSelected(num)
 
   }
-  console.log(props.classNums)
   return(
-    // <div onClick={(event)=>change(event,props.brokenDown[0])}>
-    //   class list 
-    // </div>
     <FadeIn>
       {props.classNums.map((e,i)=>{
         return(
-          <h4 onClick={(event) =>change(event,e)} className="classNum">
+          <div>
+            {selected==(e)?
+            <p  onClick={(event) =>change(event,e)} className="classNumSelected" >
             {e}
-          </h4>
+            </p>
+            :
+            <p onClick={(event) =>change(event,e)} className="classNumNot">
+            {e}
+            </p>
+          }
+          </div>
         )
       })}
     </FadeIn>

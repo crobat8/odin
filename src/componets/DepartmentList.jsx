@@ -39,20 +39,12 @@ const DepartmentList = (props) =>{
               </h4>}
             </div>
             {subject==(e)?
-            <ClassList changeClass={props.changeClass} department={e} classNums={props.classes[e]}/>:
+            <ClassList changeClass={props.changeClass} department={e} classNums={props.classes[e]}/>
+            :
             <div>
               
             </div>}
-            {/* {props.brokenDown.map((x,j)=>{
-              return(
-                <h4>
-                  {x}
-                  
-                </h4>
-              )
-            })} */}
           </div>
-
         )
         })}
     </FadeIn>
