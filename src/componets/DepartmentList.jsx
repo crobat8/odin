@@ -25,7 +25,7 @@ const DepartmentList = (props) =>{
     // <div onClick={(event)=>change(event,props.brokenDown[0])}>
     //   class list 
     // </div>
-    <FadeIn>
+    <FadeIn className="fadeDept">
       {props.keys.map((e,i)=>{
         return(
           <div className="fullDept">

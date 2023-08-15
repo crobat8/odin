@@ -366,31 +366,37 @@ $usedGrey2:#3B3B3B;
       }
       .questions{
         display: grid;
-        grid-template-columns: 1fr 3fr;
+        grid-template-columns: 1fr 2fr;
         .left{
           background-color: $usedGrey1;
           padding: 10px;
           margin: 20px;
           border-radius: 20px;
-          button{
-            margin-left: 10%;
-            margin-right: 10%;
-            margin-bottom: 20px;
-            padding: 10px;
-            border: $usedBlue1 solid 2px;
-            border-radius: 20px;
-            background-color: $usedGrey1;
-            color: $usedBlue1;
-            height: 100px;
-            width: 80%;
-            transition: 0.3s;
+          text-align: center;
+          .fadeDept{
+            color: #888888;
+            .fullDept{
+              
+              .nameDept{
+                padding-top: 10px;
+                background-color: #ffd000
+              }
+              .fadeClass{
+                .fullClass{
+                  background-color: #cea800;
+                  .classNumSelected{
+                    padding: 10px;
+                    background-color: #947900;
+                    color: #bbbbbb;
+                  }
+                  .classNumNot{
+                    padding: 5px;
+                  }
+                }
+              }
+            }
           }
-          button:hover{
-            background-color: #000;
-            margin-left: 5%;
-            margin-right: 5%;
-            width: 90%;
-          }
+          
         }
       }
     }

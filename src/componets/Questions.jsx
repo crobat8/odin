@@ -17,6 +17,7 @@ import {
   QuerySnapshot
 } from "firebase/firestore";
 import DepartmentList from "./DepartmentList";
+import MultipleChoiceOutput from "./MultipleChoiceOutput";
 
 
 const Questions =() =>{
@@ -72,9 +73,7 @@ const Questions =() =>{
     var data = x.data
     if(data.type == "multipleChoice"){
       return(
-        <p>
-          multiple choice {data.answer}
-        </p>
+        <MultipleChoiceOutput data={data}/>
       )
     }else if(data.type == "longAnswer"){
       return(
@@ -89,7 +88,6 @@ const Questions =() =>{
         </p>
       )
     }
-
   }
 
   useEffect(()=>{
@@ -112,7 +110,6 @@ const Questions =() =>{
     )
   }
   if(loading2){
-    console.log(classes)
     return(
       <h1>
         loading 2

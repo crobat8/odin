@@ -9,18 +9,18 @@ const ClassList = (props) =>{
 
   }
   return(
-    <FadeIn>
+    <FadeIn className="fadeClass">
       {props.classNums.map((e,i)=>{
         return(
-          <div>
+          <div className="fullClass" >
             {selected==(e)?
-            <p  onClick={(event) =>change(event,e)} className="classNumSelected" >
+            <h3  onClick={(event) =>change(event,e)} className="classNumSelected" >
             {e}
-            </p>
+            </h3>
             :
-            <p onClick={(event) =>change(event,e)} className="classNumNot">
+            <h4 onClick={(event) =>change(event,e)} className="classNumNot">
             {e}
-            </p>
+            </h4>
           }
           </div>
         )
